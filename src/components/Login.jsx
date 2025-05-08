@@ -15,10 +15,11 @@ const Login = () => {
         password: "",
         reCaptchaVerified: false
     })
-    // const [err, setErr] = useState({
-    //     email: "",
-    //     password: "",
-    // });
+    const [err, setErr] = useState({
+        email: "",
+        password: "",
+        ReCAPTCHA:''
+    });
     //*to handle the input changes
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value })
@@ -26,36 +27,36 @@ const Login = () => {
     //*to handle the form submission
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (formData.email != 'admin@gmail.com') return;
-        if (formData.password != 'admin') return;
-        if (!formData.reCaptchaVerified) return;
-            console.log("Form submitted successfully", formData)
+        // if (formData.email != 'admin@gmail.com') return;
+        // if (formData.password != 'admin') return;
+        // if (!formData.reCaptchaVerified) return;
+        //     console.log("Form submitted successfully", formData)
 
-            navigate('/dashboard')
-        // let validationErrors = {
-        //     email: '', password: ''
-        // }
+           
+        let validationErrors = {
+            email: '', password: '',ReCAPTCHA:''
+        }
 
-        // if (formData.email === '') {
-        //     validationErrors.email = 'Please enter your email.';
-        // } else if (formData.email !== 'admin@gmail.com') {
-        //     validationErrors.email='Invalid email'
+        if (formData.email === '') {
+            validationErrors.email = 'Please enter your email.';
+        } else if (formData.email !== 'admin@gmail.com') {
+            validationErrors.email='Invalid email'
             
-        // }
+        }
 
-        // if (formData.password === '') {
-        //     validationErrors.password='Please enter your password'
-        // } else if (formData.password !== 'admin') {
-        //     validationErrors.password='Invalid password'
-        // }
-        // if (!formData.reCaptchaVerified) {
-        //     validationErrors.reCaptchaVerified='Please verify the reCptcha'
-        // }
-        // if (validationErrors.email || validationErrors.password) {
-        //     setErr(validationErrors)
-        //     return
-        // }
-
+        if (formData.password === '') {
+            validationErrors.password='Please enter your password'
+        } else if (formData.password !== 'admin') {
+            validationErrors.password='Invalid password'
+        }
+        if (!formData.reCaptchaVerified) {
+            validationErrors.reCaptchaVerified='Please verify the reCptcha'
+        }
+        if (validationErrors.email || validationErrors.password) {
+            setErr(validationErrors)
+            return
+        }
+        navigate('/dashboard')
         //Redirect to the dashboard page
     }
     //*to handle the recaptcha verification
@@ -72,12 +73,12 @@ const Login = () => {
                 <div className='mb-4 flex flex-col gap-2'>
                     <label htmlFor="">Enter Email</label>
                     <input type="email" placeholder="Email" name='email' id={`${uniqId} email`} className='border border-gray-300 p-2 rounded outline-0' onChange={handleChange} value={formData.email} />
-                    {/* {err.email && <p className='text-red-500'>{err.email}</p>} */}
+                    {err.email && <p className='text-red-500'>{err.email}</p>}
                 </div>
                 <div className='mb-4 flex flex-col gap-2'>
                     <label htmlFor="">Enter Password</label>
                     <input type="password" placeholder="Password" name='password' id={`${uniqId} password` } className='border border-gray-300 p-2 rounded outline-0' onChange={handleChange} value={formData.password} />
-                    {/* {err.password && <p className='text-red-500'>{err.password}</p>} */}
+                    {err.password && <p className='text-red-500'>{err.password}</p>}
                 </div>
                 <div className='my-4'>
                     <ReCAPTCHA sitekey={SITE_KEY} onChange={handleRecaptchaChange} />

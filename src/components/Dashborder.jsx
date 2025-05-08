@@ -26,9 +26,9 @@ const Dashborder = () => {
 
                   </ul>
               </div>
-              {/* <div className='ml-1/8 pt-5 pl-80 text-center '>
+              <div className='ml-1/8 pt-5 pl-80 text-center '>
                   <h1>Welcome, to Dashboard</h1>
-              </div> */}
+              </div>
               
       </div>
       </>
