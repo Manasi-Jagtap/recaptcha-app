@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 const Login = () => {
     //*to use the recaptcha we need to create a site key from google recaptcha and paste it here
     //*to create a site key go to https://www.google.com/recaptcha/admin/create and create a new site key
-    const SITE_KEY = "6LfKuDArAAAAAIAOys6EBWXIw1PujZ_XNlmQZlSz"
+    const SITE_KEY = "6LePMDMrAAAAAPeMv3gXAlbml1vkTX6UczIbETaM"
     const navigate = useNavigate();
     const uniqId = useId();
     const [formData, setFormData] = useState({
@@ -18,7 +18,7 @@ const Login = () => {
     const [err, setErr] = useState({
         email: "",
         password: "",
-        ReCAPTCHA:''
+        ReCAPTCHA: ''
     });
     //*to handle the input changes
     const handleChange = (e) => {
@@ -32,25 +32,25 @@ const Login = () => {
         // if (!formData.reCaptchaVerified) return;
         //     console.log("Form submitted successfully", formData)
 
-           
+
         let validationErrors = {
-            email: '', password: '',ReCAPTCHA:''
+            email: '', password: '', ReCAPTCHA: ''
         }
 
         if (formData.email === '') {
             validationErrors.email = 'Please enter your email.';
         } else if (formData.email !== 'admin@gmail.com') {
-            validationErrors.email='Invalid email'
-            
+            validationErrors.email = 'Invalid email'
+
         }
 
         if (formData.password === '') {
-            validationErrors.password='Please enter your password'
+            validationErrors.password = 'Please enter your password'
         } else if (formData.password !== 'admin') {
-            validationErrors.password='Invalid password'
+            validationErrors.password = 'Invalid password'
         }
         if (!formData.reCaptchaVerified) {
-            validationErrors.reCaptchaVerified='Please verify the reCptcha'
+            validationErrors.reCaptchaVerified = 'Please verify the reCptcha'
         }
         if (validationErrors.email || validationErrors.password) {
             setErr(validationErrors)
@@ -77,7 +77,7 @@ const Login = () => {
                 </div>
                 <div className='mb-4 flex flex-col gap-2'>
                     <label htmlFor="">Enter Password</label>
-                    <input type="password" placeholder="Password" name='password' id={`${uniqId} password` } className='border border-gray-300 p-2 rounded outline-0' onChange={handleChange} value={formData.password} />
+                    <input type="password" placeholder="Password" name='password' id={`${uniqId} password`} className='border border-gray-300 p-2 rounded outline-0' onChange={handleChange} value={formData.password} />
                     {err.password && <p className='text-red-500'>{err.password}</p>}
                 </div>
                 <div className='my-4'>
@@ -85,7 +85,7 @@ const Login = () => {
 
                 </div>
                 <div className='mb-4 my-5 '>
-                    
+
                     <button type='submit' className='bg-blue-400 text-white px-7 py-2 rounded ml-35 font-bold cursor-pointer hover:bg-blue-500'>Login</button>
                 </div>
             </form>
